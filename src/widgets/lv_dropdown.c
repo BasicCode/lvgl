@@ -472,9 +472,12 @@ void lv_dropdown_open(lv_obj_t * dropdown_obj)
     lv_coord_t border_width = lv_obj_get_style_border_width(dropdown->list, LV_PART_MAIN);
     lv_coord_t top = lv_obj_get_style_pad_top(dropdown->list, LV_PART_MAIN) + border_width;
     lv_coord_t bottom = lv_obj_get_style_pad_bottom(dropdown->list, LV_PART_MAIN) + border_width;
+    lv_coord_t max_height = lv_obj_get_style_max_height(dropdown_obj, LV_PART_MAIN);
 
     lv_coord_t list_fit_h = label_h + top + bottom;
     lv_coord_t list_h = list_fit_h;
+
+    if(list_h > max_height) list_h = max_height;
 
     lv_dir_t dir = dropdown->dir;
     /*No space on the bottom? See if top is better.*/
